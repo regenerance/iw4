@@ -2,6 +2,8 @@
 
 A clean and functional in-game map vote system designed for **dedicated servers** and **private matches**.
 
+***THIS IS A MOD! Requires the files to be loaded via a mod so clients can download them!***
+
 ---
 
 ## 💡 Features
