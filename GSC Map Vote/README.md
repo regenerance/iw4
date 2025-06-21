@@ -106,4 +106,9 @@ Here are the recognized internal names for game modes:
 
 ---
 
+## 📸 PREVIEW
+
+![image](https://github.com/user-attachments/assets/2bd29c58-27a9-49a7-b58a-b659fc518ff1)
+
+---
 Enjoy a more engaging and flexible map voting experience on your IW4x server or private match!
