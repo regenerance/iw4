@@ -8,7 +8,7 @@ Originally created by **[@eternalhabit]** and updated by **Antiga**, this script
 
 This script can be installed on servers and clients, when installed locally it will only work in private matches.
 
-Place it in ***userraw/scripts/_mv.gsc**
+Place it in **userraw/scripts/_mv.gsc**
 
 ---
 
