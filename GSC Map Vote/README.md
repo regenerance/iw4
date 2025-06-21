@@ -1,6 +1,6 @@
 # 🗳️ IW4x Dynamic Map Voting System
 
-Originally created by **[@eternalhabit]** and updated by **Antiga**, this script introduces a simple, yet effective and customizable **Map Vote UI** system for IW4x servers and private match.
+Originally created by **eternalhabit** and updated by **Antiga**, this script introduces a simple, yet effective and customizable **Map Vote UI** system for IW4x servers and private match.
 
 ---
 
@@ -103,7 +103,7 @@ Here are the recognized internal names for game modes:
 
 ## 💡 Credits
 
-- **@eternalhabit** – Original creator  
+- **eternalhabit** – Original creator  
 - **Antiga** – Script updates, optimizations, and private match support
 
 ---
