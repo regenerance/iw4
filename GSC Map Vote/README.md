@@ -30,8 +30,8 @@ Place it in **userraw/scripts/_mv.gsc**
 
 | Action       | Button (Mouse & Keyboard) | Button (Controller)       |
 |--------------|----------------------------|----------------------------|
-| Scroll Up    | `W` / `Shoot`              | `D-Pad Up`                 |
-| Scroll Down  | `S` / `Aim`                | `D-Pad Down`               |
+| Scroll Up    | `W` / `Aim`              | `D-Pad Up`                 |
+| Scroll Down  | `S` / `Shoot`                | `D-Pad Down`               |
 | Cast Vote    | `Reload` / `Jump`          | `Reload` / `Jump`          |
 
 ---
