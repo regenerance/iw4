@@ -62,6 +62,7 @@
         - Improved buttonMonitoring function with a cleaner layout + additional button support
         - Improved mapToString function by using strTok to simplify additional arrays/case indexing
         - Quick change to timer countdown sound to be better on the ears
+        - Added a check for if people hit the endgame button to skip map voting
 */
 
 init() 
