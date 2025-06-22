@@ -70,6 +70,9 @@ init()
 
     if(!getDvarInt("mapvote_enable")) // Stops anything else from running if it's not enabled
         return;
+
+    if(!isDefined(game["skip_voting"])) // Stops Map Voting After End Game Is Selected
+        game["skip_voting"] = false;
     
     shaders = strTok("popup_button_selection_bar,gradient_center,white,line_horizontal_scorebar,black",",");
 	for(m = 0; m < shaders.size; m++)
@@ -91,6 +94,17 @@ init()
     replaceFunc(maps\mp\gametypes\_playerlogic::spawnIntermission, ::spawnIntermissionHook);
     
     level thread initMapVote();
+    level thread onPlayerConnectHook(); // Monitors End Game Button Pressed
+}
+
+onPlayerConnectHook()
+{
+    while(true)
+    {
+        level waittill("connected", player);
+        if(!player isTestClient())
+            player thread onMenuResponseHook();
+    }
 }
 
 initMapVote()
@@ -688,7 +702,8 @@ endGameHook( winner, endReasonText, nukeDetonated )
 	while(level.showingFinalKillcam)
 		waitframe();
     
-    mapVote(); // Removed Dedicated Server Check
+    if(!game["skip_voting"]) // Skip Voting Check For End Game Button
+        mapVote(); // Removed Dedicated Server Check
 
     foreach ( player in level.players )
 		player thread maps\mp\gametypes\_playerlogic::spawnIntermission();
@@ -786,6 +801,19 @@ spawnIntermissionHook()
 	self maps\mp\gametypes\_playerlogic::checkPredictedSpawnpointCorrectness( spawnPoint.origin );
 	
 	self setDepthOfField( 0, 128, 512, 4000, 6, 1.8 );
+}
+
+onMenuResponseHook()
+{
+	self endon("disconnect");
+	
+	while(true)
+	{
+		self waittill("menuresponse", menu, response);
+		
+		if ( response == "endround" )
+            game["skip_voting"] = true;
+    }
 }
 
 /*
