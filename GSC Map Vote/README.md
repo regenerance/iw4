@@ -98,7 +98,7 @@ Here are the recognized internal names for game modes:
 - 🧠 Rewrote `mapToString` using `strTok` for cleaner parsing
 - 🔊 Adjusted vote timer countdown sound for better experience
 - 🧯 Basic overflow safeguard for HUD elements
-- 🔘 Added a check for if people hit the endgame button to skip map voting
+- 🔘 Added dvar mapvote_interruption for if people hit the endgame button to skip map voting
 
 ---
 
