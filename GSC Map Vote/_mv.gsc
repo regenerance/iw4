@@ -63,12 +63,14 @@
         - Improved mapToString function by using strTok to simplify additional arrays/case indexing
         - Quick change to timer countdown sound to be better on the ears
         - Added dvar mapvote_interruption for if people hit the endgame button to skip map voting
+        - Added mapvote_instant_end_cmd to instant end if people type +endgame and skip to map voting
 */
 
 init() 
 {
     SetDvarIfUninitialized("mapvote_enable", 1); // Enables/Disables Map Voting
-    SetDvarIfUninitialized("mapvote_interruption", 1); // Enables/Disables The Ability To Simply Interrupt Map Voting By Pressing End Game
+    SetDvarIfUninitialized("mapvote_interruption", 0); // Enables/Disables The Ability To Simply Interrupt Map Voting By Pressing End Game
+    SetDvarIfUninitialized("mapvote_instant_end_cmd", 1); // Enables/Disables The Ability To Kickstart Instant Map Voting
 
     if(!getDvarInt("mapvote_enable")) // Stops anything else from running if it's not enabled
         return;
@@ -93,8 +95,7 @@ init()
     replaceFunc(maps\mp\gametypes\_playerlogic::spawnIntermission, ::spawnIntermissionHook);
     
     level thread initMapVote();
-    if(getDvarInt("mapvote_interruption") && !isDedicatedServer())
-        level thread onPlayerConnectHook(); // Monitors End Game Button Pressed
+    level thread onPlayerConnectHook(); // Monitors End Game Button Pressed
 }
 
 onPlayerConnectHook()
@@ -103,7 +104,13 @@ onPlayerConnectHook()
     {
         level waittill("connected", player);
         if(!player isTestClient())
-            player thread onMenuResponseHook();
+        {
+            if(getDvarInt("mapvote_interruption") && !isDedicatedServer())
+                player thread onMenuResponseHook();
+
+            if(getDvarInt("mapvote_instant_end_cmd"))
+                player thread onPlayerCommandHook();
+        }
     }
 }
 
@@ -805,6 +812,7 @@ spawnIntermissionHook()
 onMenuResponseHook()
 {
 	self endon("disconnect");
+    level endon("round_end_finished"); // stops properly on round end
 	
 	while(true)
 	{
@@ -812,6 +820,19 @@ onMenuResponseHook()
 		
 		if ( response == "endround" )
             exitLevel( false );
+    }
+}
+
+onPlayerCommandHook()
+{
+    self endon("disconnect");
+    level endon("round_end_finished"); // stops properly on round end
+
+    self notifyOnPlayerCommand("force_end", "+endgame");
+    while(true)
+    {
+        self waittill("force_end");
+        thread maps\mp\gametypes\_gamelogic::endGame( self.team, game["strings"]["time_limit_reached"], true );
     }
 }
 
