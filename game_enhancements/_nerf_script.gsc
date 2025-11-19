@@ -36,7 +36,8 @@ giveLoadoutMonitor()
 		nerfed_perks = strTok("specialty_finalstand|specialty_laststand|specialty_pistoldeath|specialty_combathigh|specialty_grenadepulldeath", "|");
 		foreach(item in nerfed_perks)
 			self maps\mp\_utility::_unsetPerk(item);
-		
+
+		self iPrintLn("^2Nerf patch loaded - have fun :)");
 	}
 }
 
