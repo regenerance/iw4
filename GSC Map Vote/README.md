@@ -1,3 +1,5 @@
+<img width="1240" height="702" alt="image" src="https://github.com/user-attachments/assets/eda1f2f1-c345-47c1-b335-b17a41d4a7f0" />
+
 I am sharing a new **map voting script** for the IW4x community. This has the most common gametypes: TDM, DOM, S&D, and FFA. It is super easy to add new gametypes, maps, etc too, I have included instructions below.
 
 ## Features :100: 
