@@ -20,7 +20,7 @@ Tired of breaking weaponfiles with Notepad? This tool edits IW4x/MW2 weapon file
 3. **Open** your weapon file (ex: `riotshield_mp`)
 4. Edit values → Apply / Replace → Save (backup made automatically)
 
-**Optional Item: Build the script as an .exe (one line) **
+**Optional Item: Build the script as an .exe (one line)**
 `pyinstaller --onefile --noconsole --name "WeaponFileEditor" --icon=customiconhere WeaponFileEditor.py`
 
 If you find bugs or want features added, feel free to respond to this thread.
